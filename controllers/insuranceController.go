@@ -18,7 +18,6 @@ var SimpleQuote = func(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	resp := u.Message(true, "success")
-	resp["quoteResponse"] = quoteRequest.Quote()
-	u.Respond(w, resp)
+	w.Header().Add("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(quoteRequest.Quote())
 }
