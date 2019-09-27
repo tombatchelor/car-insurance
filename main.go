@@ -6,10 +6,13 @@ import (
 	"fmt"
 	"net/http"
 	"car-insurance/controllers"
+    "github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
 func main() {
 	router := mux.NewRouter()
+
+	router.Handle("/metrics", promhttp.Handler())
 
 	router.HandleFunc("/insurance/simpleQuote",  controllers.SimpleQuote).Methods("POST")
 	port := os.Getenv("PORT")
