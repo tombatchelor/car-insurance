@@ -13,7 +13,7 @@ import (
     reporterhttp "github.com/openzipkin/zipkin-go/reporter/http"
 )
 
-const endpointURL = "http://localhost:9411/api/v2/spans"
+const endpointURI = os.Getenv(ZIPKIN_ENDPOINT)
 
 func main() {
 	tracer, err := newTracer()
@@ -50,7 +50,7 @@ func newTracer() (*zipkin.Tracer, error) {
    reporter := reporterhttp.NewReporter(endpointURL)
 
    // Local endpoint represent the local service information
-   localEndpoint := &model.Endpoint{ServiceName: "my_service", Port: 8080}
+   localEndpoint := &model.Endpoint{ServiceName: "insurance_service", Port: 8000}
 
    // Sampler tells you which traces are going to be sampled or not. In this case we will record 100% (1.00) of traces.
    sampler, err := zipkin.NewCountingSampler(1)
