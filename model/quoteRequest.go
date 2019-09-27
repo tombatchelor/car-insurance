@@ -20,7 +20,7 @@ func (quoteRequest *QuoteRequest) Quote() (quoteResponse QuoteResponse) {
 	switch random {
 	case 0:
 		quoteResponse.Company = "Calamity Insurace"
-		Sleep(5000)
+		Sleep(10000)
 	case 1:
 		quoteResponse.Company = "Accidents R US"
 		Sleep(500)
