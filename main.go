@@ -13,8 +13,6 @@ import (
     reporterhttp "github.com/openzipkin/zipkin-go/reporter/http"
 )
 
-const endpointURI = os.Getenv(ZIPKIN_ENDPOINT)
-
 func main() {
 	tracer, err := newTracer()
     if err != nil {
@@ -47,6 +45,7 @@ func main() {
 
 func newTracer() (*zipkin.Tracer, error) {
    // The reporter sends traces to zipkin server
+   endpointURL := os.Getenv("ZIPKIN_ENDPOINT")
    reporter := reporterhttp.NewReporter(endpointURL)
 
    // Local endpoint represent the local service information
