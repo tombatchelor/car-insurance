@@ -19,7 +19,7 @@ func (quoteRequest *QuoteRequest) Quote() (quoteResponse QuoteResponse) {
 	random := rand.Int31n(5)
 	switch random {
 	case 0:
-		quoteResponse.Company = "Calamity Insurace"
+		quoteResponse.Company = "Calamity Insurance"
 		Sleep(10000)
 	case 1:
 		quoteResponse.Company = "Accidents R US"
