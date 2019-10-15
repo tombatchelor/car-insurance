@@ -46,7 +46,7 @@ func main() {
 func newTracer() (*zipkin.Tracer, error) {
    // The reporter sends traces to zipkin server
    endpointURL := os.Getenv("ZIPKIN_ENDPOINT")
-   reporter := reporterhttp.NewReporter(endpointURL)
+   reporter := reporterhttp.NewReporter(endpointURL + "api/v2/spans")
 
    // Local endpoint represent the local service information
    localEndpoint := &model.Endpoint{ServiceName: "insurance_service", Port: 8000}
