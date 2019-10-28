@@ -16,11 +16,17 @@ type QuoteRequest struct {
 func (quoteRequest *QuoteRequest) Quote() (quoteResponse QuoteResponse) {
 	quote := float64(quoteRequest.Price) * 0.05
 	quoteResponse.Price = quote
-	random := rand.Int31n(5)
+	currentTime := time.Now()
+	var random int32
+	if currentTime.Hour()%2 == 0 {
+		random = rand.Int31n(4)
+	} else {
+		random = rand.Int31n(5)
+	}
 	switch random {
 	case 0:
-		quoteResponse.Company = "Calamity Insurance"
-		Sleep(10000)
+		quoteResponse.Company = "NeverPayOut Insurance"
+		Sleep(600)
 	case 1:
 		quoteResponse.Company = "Accidents R US"
 		Sleep(500)
@@ -31,8 +37,8 @@ func (quoteRequest *QuoteRequest) Quote() (quoteResponse QuoteResponse) {
 		quoteResponse.Company = "Crashing Pumpkins"
 		Sleep(1000)
 	case 4:
-		quoteResponse.Company = "NeverPayOut Insurance"
-		Sleep(600)
+		quoteResponse.Company = "Calamity Insurance"
+		Sleep(10000)
 	}
 	return quoteResponse
 }
